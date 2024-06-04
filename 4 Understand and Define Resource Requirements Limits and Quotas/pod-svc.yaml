@@ -7,3 +7,10 @@ spec:
   - name: busybox
     image: busybox:stable
     command: ['sh', '-c', 'while true; do echo Running...; sleep 5; done']
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "64Mi"
+      limits:
+        cpu: "150m"
+        memory: "128Mi"

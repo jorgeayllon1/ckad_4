@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: ps-sandbox-quotas
+  namespace: ps-sandbox
+spec:
+  hard:
+    requests.memory: "32Mi"
+    limits.cpu: "100"
+    limits.memory: "50Gi"
+    pods: "100"
