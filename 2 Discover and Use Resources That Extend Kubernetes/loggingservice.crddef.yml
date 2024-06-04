@@ -1,0 +1,29 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: loggingservices.pluralsight.com
+spec:
+  group: pluralsight.com
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                logRetentionDays:
+                  type: integer
+                logLevel:
+                  type: string
+                  enum: ['info','warn','error']
+  scope: Namespaced
+  names:
+    plural: loggingservices
+    singular: loggingservice
+    kind: LoggingService
+    shortNames:
+      - ls

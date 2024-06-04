@@ -1,0 +1,7 @@
+apiVersion: pluralsight.com/v1
+kind: Flag
+metadata:
+  name: wired-app
+spec:
+  new_ui: true
+  beta: false

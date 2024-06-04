@@ -1,0 +1,13 @@
+apiVersion: pluralsight.com/v1
+kind: Application
+metadata:
+  name: appplus
+spec:
+  frontend:
+    image: nginx:stable-perl
+    minReplicas: 2
+    maxReplicas: 4
+  backend:
+    image: python:3.9.19-alpine3.20
+    minReplicas: 2
+    maxReplicas: 4
