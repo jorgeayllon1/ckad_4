@@ -12,6 +12,7 @@ spec:
       labels:
         app: deploy-manager
     spec:
+      serviceAccountName: deploy-sa
       containers:
       - name: busybox
         image: busybox:stable

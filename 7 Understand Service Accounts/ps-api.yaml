@@ -4,7 +4,8 @@ metadata:
   name: ps-api
 spec:
   restartPolicy: Never
+  serviceAccountName: ps-sa
   containers:
     - name: busybox
-      image: radial/busyboxplus:curl
+      image: curlimages/curl:8.8.0
       command: ['sh', '-c', 'while true; do curl -s --header "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt https://kubernetes/api/v1/namespaces/default/secrets; sleep 5; done']

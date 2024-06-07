@@ -4,6 +4,7 @@ metadata:
   name: custom-metrics-collector
 spec:
   restartPolicy: Never
+  serviceAccountName: metrics-sa
   containers:
     - name: busybox
       image: busybox:stable
