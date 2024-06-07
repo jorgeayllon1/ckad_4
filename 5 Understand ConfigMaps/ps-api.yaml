@@ -8,3 +8,18 @@ spec:
     - name: busybox
       image: busybox:stable
       command: ['sh', '-c', 'echo $WEATHER_API; echo $STORMWARN_API']
+      env:
+        - name: WEATHER_API
+          valueFrom:
+            configMapKeyRef:
+              name: ps-api-config
+              key: weather_api
+        - name: STORMWARN_API
+          valueFrom:
+            configMapKeyRef:
+              name: ps-api-config
+              key: stormwarn_api
+  volumes:
+  - name: ps-api-config
+    configMap:
+      name: ps-api-config

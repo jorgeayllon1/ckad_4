@@ -8,3 +8,24 @@ spec:
     - name: busybox
       image: busybox:stable
       command: ['sh', '-c', 'echo $LOG_FORMAT; echo $BUFFER_SIZE; cat /tmp/logging-init.sh']
+      env:
+        - name: LOG_FORMAT
+          valueFrom:
+            configMapKeyRef:
+              name: logger-config
+              key: log_format
+        - name: BUFFER_SIZE
+          valueFrom:
+            configMapKeyRef:
+              name: logger-config
+              key: buffer_size
+      volumeMounts:
+      - name: config-log
+        mountPath: /tmp
+  volumes:
+  - name: config-log
+    configMap:
+      name: logger-config
+      items:
+      - key: "logging-init.sh"
+        path: "logging-init.sh"

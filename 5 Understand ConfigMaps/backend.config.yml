@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+  log_level: "info"
+  db_host: "db-service"
+  db_port: "5432"

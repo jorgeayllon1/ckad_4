@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: ps-api-config
+data:
+  weather_api: https://weather.pluralsight.com/v2
+  stormwarn_api: https://swarn.pluralsight.com/v1
