@@ -16,3 +16,29 @@ spec:
       - name: busybox
         image: busybox:stable
         command: ['sh', '-c', 'echo $USERNAME; echo $PASSWORD; echo $MESSAGE_QUEUE_NAME; echo $RETRY_ATTEMPTS; echo $LOG_LEVEL']
+        env:
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: message-secret
+              key: username
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: message-secret
+              key: password
+        - name: MESSAGE_QUEUE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: message-config
+              key: message_queue_name
+        - name: RETRY_ATTEMPTS
+          valueFrom:
+            configMapKeyRef:
+              name: message-config
+              key: retry_attempts
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: message-config
+              key: log_level

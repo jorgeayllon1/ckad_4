@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: comm-config
+data:
+  new_checkout_flow : "enabled"
+  maximum_transaction_value: "5000"
+  log_level: "INFO"

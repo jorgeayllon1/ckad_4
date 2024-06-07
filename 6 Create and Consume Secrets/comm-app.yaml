@@ -16,3 +16,29 @@ spec:
       - name: busybox
         image: busybox:stable
         command: ['sh', '-c', 'echo $USERNAME; echo $PASSWORD; echo $NEW_CHECKOUT_FLOW; echo $MAX_TRANSACTION_VALUE; echo $LOG_LEVEL']
+        env:
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: comm-secret
+              key: username
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: comm-secret
+              key: password
+        - name: NEW_CHECKOUT_FLOW
+          valueFrom:
+            configMapKeyRef:
+              name: comm-config
+              key: new_checkout_flow
+        - name: MAX_TRANSACTION_VALUE
+          valueFrom:
+            configMapKeyRef:
+              name: comm-config
+              key: maximum_transaction_value
+        - name: LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: comm-config
+              key: log_level

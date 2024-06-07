@@ -8,3 +8,32 @@ spec:
     - name: busybox
       image: busybox:stable
       command: ['sh', '-c', 'echo $DB_USERNAME; echo $DB_PASSWORD; echo $DB_PORT; echo $APP_PORT']
+      env:
+      - name: DB_PORT
+        valueFrom:
+          configMapKeyRef:
+            name: web-config
+            key: db-port
+      - name: APP_PORT
+        valueFrom:
+          configMapKeyRef:
+            name: web-config
+            key: app-port
+      - name: DB_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: web-secret
+            key: db-username
+      - name: DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: web-secret
+            key: db-password
+      volumeMounts:
+        - name: secret-volume
+          readOnly: true
+          mountPath: /etc/tls
+  volumes:
+    - name: secret-volume
+      secret:
+        secretName: web-tls
