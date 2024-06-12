@@ -3,6 +3,12 @@ kind: Pod
 metadata:
   name: file-svc
 spec:
+  securityContext:
+    runAsUser: 1005
+    runAsGroup: 4007
+    runAsNonRoot: true
+    fsGroup: 800
+    fsGroupChangePolicy: "OnRootMismatch"
   containers:
   - name: busybox
     image: busybox:stable
